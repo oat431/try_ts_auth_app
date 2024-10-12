@@ -2,7 +2,7 @@ import express, { urlencoded, json } from 'express';
 import 'reflect-metadata';
 
 // router
-import healthCheckRouter from './router/health-check-router.js';
+import healthCheckRouter from './health-check/router/health-check-router.js';
 
 const port = 8080;
 const app = express();

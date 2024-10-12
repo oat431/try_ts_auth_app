@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import HealthCheckDTO from '../payload/resposne/HealthCheckDTO.js';
 import HealthCheckRequest from '../payload/request/HealCheckRequest.js';
-import ResponseDTO from '../shared/ResponseDTO.js';
-import Status from '../shared/Status.js';
+import ResponseDTO from '../../shared/ResponseDTO.js';
+import Status from '../../shared/Status.js';
 import { HealthCheckService } from '../service/health-check-service.js';
 import { injectable, inject } from 'tsyringe';
 
