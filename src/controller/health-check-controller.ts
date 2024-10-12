@@ -3,10 +3,12 @@ import HealthCheckDTO from '../payload/resposne/HealthCheckDTO.js';
 import HealthCheckRequest from '../payload/request/HealCheckRequest.js';
 import ResponseDTO from '../shared/ResponseDTO.js';
 import Status from '../shared/Status.js';
-import HealthCheckService from '../service/health-check-service.js';
+import { HealthCheckService } from '../service/health-check-service.js';
+import { injectable, inject } from 'tsyringe';
 
-class HealthCheckController {
-    constructor(private healthCheckService: HealthCheckService) {}
+@injectable()
+export class HealthCheckController {
+    constructor(@inject('HealthCheckService') private healthCheckService: HealthCheckService) {}
 
     public healthCheck(req: Request, res: Response): void {
         const response: ResponseDTO<HealthCheckDTO> = {
@@ -39,5 +41,3 @@ class HealthCheckController {
         res.status(200).json(response);
     }
 }
-
-export default HealthCheckController;

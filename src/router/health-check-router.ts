@@ -1,12 +1,14 @@
 import { Router } from 'express';
-import HealthCheckController from '../controller/health-check-controller.js';
-import HealthCheckService from '../service/health-check-service-implement.js';
+import { HealthCheckController } from '../controller/health-check-controller.js';
+import 'reflect-metadata';
+import '../config/container.js';
+import { container } from 'tsyringe';
 
 const healthCheckRouter = Router();
-const controller: HealthCheckController = new HealthCheckController(new HealthCheckService());
+const controller = container.resolve(HealthCheckController);
 
-healthCheckRouter.get('/', controller.healthCheck);
+healthCheckRouter.get('/', (req, res) => controller.healthCheck(req, res));
 
-healthCheckRouter.get('/ping', controller.ping);
+healthCheckRouter.get('/ping', (req, res) => controller.ping(req, res));
 
 export default healthCheckRouter;

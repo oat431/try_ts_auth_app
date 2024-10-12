@@ -1,7 +1,9 @@
+import { injectable } from 'tsyringe';
 import HealthCheckDTO from '../payload/resposne/HealthCheckDTO.js';
-import HealthCheckService from './health-check-service.js';
+import { HealthCheckService } from './health-check-service.js';
 
-class HealthCheckServiceImpl implements HealthCheckService {
+@injectable()
+export class HealthCheckServiceImpl implements HealthCheckService {
     public healthCheck(): HealthCheckDTO {
         const message: HealthCheckDTO = {
             message: 'Server is up and running',
@@ -21,5 +23,3 @@ class HealthCheckServiceImpl implements HealthCheckService {
         return messageDTO;
     }
 }
-
-export default HealthCheckServiceImpl;
