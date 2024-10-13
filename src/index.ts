@@ -4,7 +4,7 @@ import 'reflect-metadata';
 import db from './config/db.js';
 import { createDatabase } from 'typeorm-extension';
 import { ensureDB } from './util/createdb.js';
-import { DataSource } from 'typeorm';
+import { createDataSource } from './config/data-source.js';
 
 // application router
 import healthCheckRouter from './health-check/router/health-check-router.js';
@@ -21,11 +21,7 @@ const initialize = async () => {
     if (process.env.RESTART_DB == 'true') {
         await ensureDB();
     }
-    const datasource = new DataSource({
-        ...db,
-        synchronize: true,
-    });
-    await datasource.initialize();
+    await createDataSource();
     console.log(`Database connected successfully at ${DB_PORT}`);
     app.use('/health-check', healthCheckRouter);
     app.listen(SERVER_PORT, () => {
