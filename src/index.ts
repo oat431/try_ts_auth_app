@@ -1,12 +1,13 @@
+// core libraries
 import express, { urlencoded, json } from 'express';
 import 'reflect-metadata';
 import db from './config/db.js';
 import { createDatabase } from 'typeorm-extension';
 import { ensureDB } from './util/createdb.js';
-
-// router
-import healthCheckRouter from './health-check/router/health-check-router.js';
 import { DataSource } from 'typeorm';
+
+// application router
+import healthCheckRouter from './health-check/router/health-check-router.js';
 
 const SERVER_PORT = process.env.SERVER_PORT || 8080;
 const DB_PORT = process.env.DB_PORT || 5432;

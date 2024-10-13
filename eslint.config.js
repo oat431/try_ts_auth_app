@@ -9,7 +9,6 @@ export default [
     ...tseslint.configs.recommended,
     {
         rules: {
-            'no-unused-vars': 'warn',
             'no-cond-assign': 'warn',
         },
     },
