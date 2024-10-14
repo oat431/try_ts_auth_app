@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, Relation } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Relation } from 'typeorm';
 import { Auth } from './auth.js';
 
 @Entity('tb_refresh_token')
@@ -24,5 +24,6 @@ export class RefreshToken {
     isRevoke?: boolean;
 
     @ManyToOne(() => Auth, (auth) => auth.refreshTokens)
+    @JoinColumn({ name: 'auth_id' })
     auth?: Relation<Auth>;
 }

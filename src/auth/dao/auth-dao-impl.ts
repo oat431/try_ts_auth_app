@@ -5,6 +5,9 @@ import { injectable } from 'tsyringe';
 
 @injectable()
 export class AuthDaoImpl implements AuthDao {
+    deleteAll(): void {
+        authRepository.clear();
+    }
     save(auth: Auth): Promise<Auth> {
         return authRepository.save(auth);
     }

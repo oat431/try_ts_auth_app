@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, Relation } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, Relation, JoinColumn } from 'typeorm';
 import { Auth } from './auth.js';
 
 @Entity('tb_user')
@@ -16,5 +16,6 @@ export class User {
     birthday?: Date;
 
     @OneToOne(() => Auth, (auth) => auth.user)
+    @JoinColumn({ name: 'auth_id' })
     auth?: Relation<Auth>;
 }

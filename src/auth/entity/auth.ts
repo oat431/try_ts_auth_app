@@ -11,7 +11,7 @@ export class Auth {
     @Column({ unique: true })
     username?: string;
 
-    @Column({ length: 50 })
+    @Column()
     password?: string;
 
     @Column({ unique: true })
@@ -23,13 +23,13 @@ export class Auth {
     @Column({ name: 'is_enabled', default: false })
     isEnabled?: boolean;
 
-    @OneToMany(() => RefreshToken, (refreshToken) => refreshToken.auth)
+    @OneToMany(() => RefreshToken, (refreshToken) => refreshToken.auth, { cascade: true })
     refreshTokens?: Relation<RefreshToken[]>;
 
-    @OneToOne(() => User, (user) => user.auth)
+    @OneToOne(() => User, (user) => user.auth, { cascade: true })
     user?: Relation<User>;
 
-    @ManyToMany(() => Role, (role) => role.auths)
+    @ManyToMany(() => Role, (role) => role.auths, { cascade: true })
     @JoinTable({
         name: 'tb_auth_roles', // Custom name for the join table
         joinColumn: { name: 'auth_id', referencedColumnName: 'id' },
